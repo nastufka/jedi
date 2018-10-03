@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="page-header">
+
+    <form method="POST" class="post-form">{% csrf_token %}
+        <div style="display:none;">
+            <label for="name_jedi">name: </label><input id='name_jedi' name='name_jedi' type="text" readonly value="{{name}}"><br>
+            <label for="order_code">order_code: </label><input id='order_code' name='order_code' type="text" readonly value="{{order_code}}"><br>
+        </div>
+        <table style="border: 2px solid;">
+            <thead class="thead-dark">
+              <tr style="border: 2px solid;">
+                <th scope="col" style="border: 2px solid;">name</th>
+                <th scope="col" style="border: 2px solid;">age</th>
+                <th scope="col" style="border: 2px solid;">email</th>
+                <th scope="col" style="border: 2px solid;">answers</th>
+                <th scope="col" style="border: 2px solid;">выбрать</th>
+              </tr>
+            </thead>
+            {% for answer in candidate %}
+            <tr style="border: 2px solid;">
+                <td style="border: 2px solid;">{{ answer.name }}</td>
+                <td style="border: 2px solid;">{{ answer.age }}</td>
+                <td style="border: 2px solid;">{{ answer.email }}</td>
+                <td style="border: 2px solid;">{{ answer.answers }}</td>
+                <td style="border: 2px solid;"><input type="submit" value="выбрать" name="{{ answer.email }}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    </div>
+</body>
+</html>

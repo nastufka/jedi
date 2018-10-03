@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext'
+          rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="page-header">
+    <form action="" method="POST">{% csrf_token %}
+        <label for="name">name: </label><input id='name' name='name' type="text" readonly value="{{form.name}}"><br>
+        <label for="email">email: </label><input id='email' name='email' type="text" readonly value="{{form.email}}"><br>
+        <ul class="list-group">
+
+
+            {% for answer in posts %}
+            <li class="list-group-item">
+                <table>
+                    <tr>
+                        <td>{{ answer.question }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name='{{ answer.id }}' type="radio" value="True">True
+                            <input name='{{ answer.id }}' type="radio" value="False">False
+                        </td>
+                    </tr>
+                </table>
+            </li>
+            {% endfor %}
+        </ul>
+        <input type="submit" value="ok">
+    </form>
+</div>
+</body>
+</html>
